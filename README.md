@@ -1,8 +1,8 @@
 # docker
-# hub.docker.com to list all the images from docker hub.
+## hub.docker.com to list all the images from docker hub.
 Learning Docker
 
-:: First comands:
+**First comands:**
 
 docker run hello-world
 docker run -it ubuntu bash
@@ -18,11 +18,11 @@ docker exec <container name> <command> (to execute a command inside of container
 docker exec -it <container name> bash (open a bash inside of container)
 docker volume ls (list all avaliable volumes.)
 
-:: Running the webserver nginx
+**Running the webserver nginx**
 docker run -d -p 8080:80 -name webserver nginx (-p: port 8080 is from your phisical host/pc and 80 is the port of container. The option -name just give a personalized name to your container)
 
-:: Creating a personalizated image from docker hub original (your own image)
+**Creating a personalizated image from docker hub original (your own image)**
 docker commit <container name> <new image name>  (container name = your container that are in you pc and are personalizated)
 
-:: How to create and volume disk and map inside your container (use option -v)
+**How to create and volume disk and map inside your container (use option -v)**
 docker run -itd -p 8080:80 -v /usr/share/nginx/html --name webserver nginx
