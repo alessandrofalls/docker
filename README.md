@@ -19,6 +19,7 @@ docker exec -it <container name> bash (open a bash inside of container)
 docker volume ls (list all avaliable volumes)
 docker volume rm <volume name>
 Option -e = enviroment variable
+docker inspect <id_container> (to inpect container details)
 
 **Running the webserver nginx**
 docker run -d -p 8080:80 -name webserver nginx (-p: port 8080 is from your phisical host/pc and 80 is the port of container. The option -name just give a personalized name to your container)
@@ -49,3 +50,44 @@ docker run -itd --name wordpress --network network1 \
     -p 8080:80 \
     wordpress
 
+
+# DOCKER FILE
+FROM UBUNTU
+
+**METADATA to use inside the container**
+LABEL key="value"
+
+**Enviroments variales to use inside the container**
+ENV npm_version=8 ENV=production
+
+**run comand inside the container**
+RUN apt update && apt install -y git nano && apt clean-cache
+
+**select the workdir to execute comand**
+WORKDIR /the/workdir/path
+
+**run a command on a workdir**
+RUN npm build
+
+**used to copy files**
+COPY ./files/requeriments.txt requeriments.txt
+
+**used to copy and extract files**
+ADD ./files.tar.gz ./
+
+**used do execute any executable program inside container, and can receive argumento when execute the image**
+CMD [ "ping", "-c", "3", "localhost"]
+
+**same as CMD, but not subscribe original comand**
+ENTRYPOINT [ "ping", "-c", "3", "localhost"]
+
+**expose ports to anothers containers**
+EXPOSE 8080
+
+**all the commands below this will execute with this user**
+USER joao
+
+**create a mount point inside container**
+VOLUME ["/data"]
+
+* Docker Compose
